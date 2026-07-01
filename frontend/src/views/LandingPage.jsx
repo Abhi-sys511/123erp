@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
-const API = 'https://123erp-production.up.railway.app/api/';
+const API = 'https://123erp-production.up.railway.app/api';
 
 export default function LandingPage() {
   const navigate = useNavigate();
