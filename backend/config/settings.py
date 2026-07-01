@@ -1,3 +1,8 @@
+import os
+import environ
+import dj_database_url
+
+
 """
 Django settings for config project.
 
@@ -17,7 +22,8 @@ from dotenv import load_dotenv
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -26,7 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-kd38ir&!jueil=__w$ls*^r#gaw8qa*cm+h^l-rtpyn@((!l1h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -87,14 +93,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'solar_erp'),
-        'USER': os.getenv('DB_USER', 'postgres'),
-        'PASSWORD': 'postgres123',
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5432'),
-    }
+    'default': dj_database_url.config(
+        default=
+            f"postgresql://"
+            f"{env('DB_USER')}:"
+            f"{env('DB_PASSWORD')}@"
+            f"{env('DB_HOST')}:"
+            f"{env('DB_PORT')}/"
+            f"{env('DB_NAME')}"
+    )
 }
 
 
