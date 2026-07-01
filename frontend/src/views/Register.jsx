@@ -11,7 +11,7 @@ export default function Register() {
     e.preventDefault();
     setError('');
     try {
-      await axios.post('http://localhost:8000/api/auth/register/', formData);
+      await axios.post('https://123erp-production.up.railway.app/api/auth/register/', formData);
       if (formData.role === 'CUSTOMER') {
         // Customers go to the interest form on the landing page
         navigate('/', { state: { step: 'interest', email: formData.email } });
@@ -37,19 +37,19 @@ export default function Register() {
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <label className="input-label">Username</label>
-            <input required type="text" className="input-field" value={formData.username} onChange={e => setFormData({...formData, username: e.target.value})} />
+            <input required type="text" className="input-field" value={formData.username} onChange={e => setFormData({ ...formData, username: e.target.value })} />
           </div>
           <div className="input-group">
             <label className="input-label">Email</label>
-            <input required type="email" className="input-field" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+            <input required type="email" className="input-field" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
           </div>
           <div className="input-group">
             <label className="input-label">Password</label>
-            <input required type="password" className="input-field" value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})} />
+            <input required type="password" className="input-field" value={formData.password} onChange={e => setFormData({ ...formData, password: e.target.value })} />
           </div>
           <div className="input-group">
             <label className="input-label">Role (For Testing)</label>
-            <select className="input-field" value={formData.role} onChange={e => setFormData({...formData, role: e.target.value})}>
+            <select className="input-field" value={formData.role} onChange={e => setFormData({ ...formData, role: e.target.value })}>
               <option value="CUSTOMER">Customer</option>
               <option value="SALES_EXECUTIVE">Sales Executive</option>
               <option value="TECHNICIAN">Technician</option>

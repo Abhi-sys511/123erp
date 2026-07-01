@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const api = axios.create({
-    baseURL: 'http://localhost:8000/api/',
+    baseURL: 'https://123erp-production.up.railway.app/api/',
   });
 
   api.interceptors.request.use((config) => {
